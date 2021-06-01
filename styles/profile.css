@@ -1,0 +1,42 @@
+#profileMenu {
+    position: absolute;
+    box-shadow: 0 1px 3px #aaa;
+    background-color: #fff;
+    top: 44px;
+    right: 0;
+    width: 200px;
+    font-size: 11px;
+    color: #757575;
+    border-radius: 6px;
+}
+#profileMenu .header {
+    background-color: #4FB9DD;
+    color: #fff;
+    padding: 10px;
+    border-radius: 6px 6px 0 0;
+}
+#profileMenu .options {
+    padding: 0 5px;
+}
+#profileMenu .options p{
+    margin-left: 28px;
+}
+#profileMenu .options li {
+    padding: 17px 15px;
+    transition: 0.1s;
+    transition-property: background;
+}
+#profileMenu .options li:hover {
+    background-color: #F5F5F5;
+    cursor: pointer;
+}
+#profileMenu .options li:nth-child(3) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+#profileMenu svg {
+    width: 22px;
+    height: 22px;
+    fill: #757575;
+    transform: translateY(-5px);
+}

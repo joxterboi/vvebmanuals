@@ -1,0 +1,180 @@
+.popupCard h2 {
+    font-weight: lighter;
+}
+.paddingTop {
+    padding-top: 20px !important;
+}
+.popupCard {
+    position: absolute;
+    width: 80vw;
+    height: 80vh;
+    top: 10%;
+    left: 10%;
+    box-shadow: 0 5px 20px #555;
+    overflow: hidden;
+    background-color: #fff;
+    display: none;
+}
+.popupCardSmall {
+    width: calc(80vw - 22%) !important;
+    margin-left: 50vw;
+    transform: translateX(-63%);
+}
+.popupCardSmall .popContent {
+    width: 100% !important;
+    margin-left: 0;
+}
+.popTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.popSidebar {
+    height: 100%;
+    width: 22%;
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+    float: left;
+}
+
+.popTitle #right {
+    justify-content: end;
+}
+.popTitle #right span {
+    justify-content: center;
+    display: inline-flex;
+    transform: translateY(8px);
+}
+.popTitle #right span svg {
+    padding: 12px;
+    border: 1px #ddd solid;
+}
+.popTitle #right span svg:hover {
+    cursor: pointer;
+    background-color: #eee;
+}
+
+.popTitle #right span svg:nth-child(2) {
+ border-left: none;
+ border-right: none;
+ border-radius: 0;
+}
+.popTitle #right span svg:first-child {
+    background-color: #D7D7D7;
+    border-radius: 5px 0 0 5px;
+}
+.popTitle #right span svg:last-child {
+    border-radius: 0 5px 5px 0;
+}
+
+#popupMenuButton {
+    width: 20px;
+}
+.popTitle input {
+    padding: 10px;
+    margin-right: 26px;
+    border-radius: 5px;
+    border: 1px #ccc solid;
+    transition: 0.2s cubic-bezier(.32,.19,.36,.78);
+    margin: 1px;
+    transform: translateY(-8px);
+}
+.popTitle input:hover {
+    border: 2px #000 solid;
+    margin: 0;
+}
+.popTitle input:focus {
+    border: 2px #23A8D5 solid;
+    margin: 0;
+}
+.popTitle button {
+    border: none;
+    background-color: #fff;
+    font-size: 20px;
+    color: #757575;
+    padding: 5px;
+    margin: 2px;
+    transform: translateY(-8px);
+}
+
+
+/* ------------------------------------SIDEBAR---------------------------------- */
+.popSidebar {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.folder {
+    display: flex;
+    align-items: center;
+    color: #1D1D1D;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    transition: .2s;
+}
+.folder:hover {
+    cursor: pointer;
+}
+.folder svg{
+    width: 24px;
+    margin-right: 8px;
+}
+.second {
+margin-left: 15px;
+}
+.third {
+    margin-left: 47px;
+}
+.fourth {
+    margin-left: 65px;
+}
+/* ------------------------------------Content---------------------------------- */
+.popContent {
+    width: 78%;
+    margin-left: 22%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.contentContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.titleBar {
+    padding: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    /* background-color: red; */
+}
+.menuTitles {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    /* background-color: green; */
+}
+.menuTitles li {
+    flex: 2;
+}
+#listedDoc {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+#listedDoc:hover {
+    cursor: pointer;
+    background-color: #F5F5F5;
+}
+#listedDoc p:nth-child(3) {
+    flex: 0.41;
+}
+#listedDoc span p {
+    margin-top: 8px;
+}
+.documentList svg {
+    width: 20px;
+    margin: 7px 10px;
+}

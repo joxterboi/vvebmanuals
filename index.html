@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, maximum-scale=1.0">
+    <title>Web Manuals - Reader</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/popup.css">
+    <link rel="stylesheet" href="styles/profile.css">
+    <script src="script.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="icon" href="img/favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+</head>
+
+<div id="logInData" style="display: hidden;"></div>
+<div id="logInScreen">
+    
+    <form>
+        <img src="img/lusaLogo.png" alt="">
+        <input type="text" placeholder="Username" id="usrNme" autocomplete="off">
+        <input type="password" placeholder="Password" id="psWrd" autocomplete="off">
+        <span id="wrongPass">
+            <svg xmlns="http://www.w3.org/2000/svg" width="10%" height="75%" viewBox="0 0 24 24" fit="" fill="white" preserveAspectRatio="xMidYMid meet" focusable="false"><path d="M4.47 21h15.06c1.54 0 2.5-1.67 1.73-3L13.73 4.99c-.77-1.33-2.69-1.33-3.46 0L2.74 18c-.77 1.33.19 3 1.73 3zM12 14c-.55 0-1-.45-1-1v-2c0-.55.45-1 1-1s1 .45 1 1v2c0 .55-.45 1-1 1zm1 4h-2v-2h2v2z"></path></svg>
+            Wrong username or password!</span>
+        <input type="button" value="Login" onclick="logIn()">
+        <a href="">I forgot my password</a>
+    </form>
+    <div id="logInFooter">
+        <img src="img/logo_powered_by_white.png">
+    </div>
+</div>
+
+<body onload="welcome()">   
+<div id="siteContainer">
+
+    <div id="top-bar">
+        <!-- This is the hamburger menu icon -->
+        <div class="leftIcons">
+            <svg  onclick="openMenu()" id="hamburger" xmlns="http://www.w3.org/2000/svg" fill="white" height="100%" viewBox="0 0 24 24" width="100%" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M4 18h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1zm0-5h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1zM3 7c0 .55.45 1 1 1h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1z"></path></svg>
+        
+            <svg onclick="closeMenu()" id="menuArrow" xmlns="http://www.w3.org/2000/svg" fill="white" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
+                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
+            </svg>
+        </div>
+
+<!-- TABS -->
+        <!-- <div class="tab">
+            <span class="tabIcon">
+                <svg fill="#707070" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox=" 76 -7 35 35" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
+                <path d="M4 13h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zm0 8h6c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1zm10 0h6c.55 0 1-.45 1-1v-8c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zM13 4v4c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1z"></path></svg>
+            </span>
+            <p class="tabText">Dashboard</p>
+        </div>
+        <div class="tab inActiveTab" id="tab">
+            <span class="tabIcon">
+                <svg fill="#707070" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox=" 76 -7 35 35" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
+                <path d="M4 13h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zm0 8h6c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1zm10 0h6c.55 0 1-.45 1-1v-8c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zM13 4v4c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1z"></path></svg>
+            </span>
+            <p class="tabText" id="tab">Night rating theory</p>           
+        </div>
+        <svg id="tabMenu" xmlns="http://www.w3.org/2000/svg" fill="white" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg> -->
+        <!-- TABS V2 -->
+        <div id="tabs">
+
+            <div class="tab activeTab" id="dashboard" onclick="switchTab(this)">
+                <svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M4 13h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zm0 8h6c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1zm10 0h6c.55 0 1-.45 1-1v-8c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zM13 4v4c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1z"></path></svg>
+                <p>Dashboard</p>
+            </div>
+
+            <div class="tab defaultClosed" onclick="switchTab(this)">
+                <svg height="80%" viewBox="0 0 410 513" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
+                    <path d="M395.9 98.9L312 15C303 5.99999 290.8 0.899994 278.1 0.899994H48C21.5 0.999994 0 22.5 0 49V465C0 491.5 21.5 513 48 513H362C388.5 513 410 491.5 410 465V132.9C410 120.2 404.9 107.9 395.9 98.9ZM358.1 129H282V52.9L358.1 129ZM48 465V49H234V153C234 166.3 244.7 177 258 177H362V465H48Z" ></path>
+                    <path d="M186.672 267.796L165.95 323.424L186.167 350.227C197.286 365.061 207.057 377.198 207.9 377.198C209.584 377.198 248.839 325.11 249.176 322.581C249.344 320.221 209.247 212 208.068 212C207.563 212 197.96 237.117 186.672 267.796Z" ></path>
+                    <path d="M75.4795 227.508C75.8165 230.543 81.0391 263.245 86.9357 300.33L97.718 367.421L112.038 374.669C128.212 382.761 145.227 388.829 165.107 393.381C175.89 395.909 184.987 396.583 211.437 396.415C241.931 396.415 245.469 396.078 261.137 391.695C282.702 385.795 315.217 370.455 317.576 365.061C318.418 362.87 323.809 332.021 329.537 296.285C335.097 260.548 340.151 229.194 340.657 226.497C341.33 223.463 340.993 221.946 339.814 222.283C338.972 222.62 309.152 260.885 273.773 307.242C238.393 353.598 209.079 391.695 208.405 391.863C207.731 392.201 178.08 354.104 142.363 307.41C106.647 260.548 76.8273 222.283 75.9849 222.283C75.1426 222.114 74.9741 224.643 75.4795 227.508Z" ></path>
+                    <path d="M98.5604 389.503V398.606L111.701 404.675C143.037 419.172 170.33 424.903 208.068 424.903C246.143 424.903 271.077 419.509 307.13 403.326L317.576 398.606V389.672C317.576 384.615 317.239 380.569 316.733 380.569C316.228 380.569 311.174 382.929 305.614 385.795C292.473 392.369 265.18 401.472 246.817 405.349C224.915 409.9 187.177 409.395 164.265 404.338C146.07 400.46 124.337 392.706 109.006 384.952C104.288 382.592 99.9081 380.569 99.4027 380.569C98.8973 380.569 98.5604 384.615 98.5604 389.503Z" ></path>
+                </svg>
+                <p>Night Raiting Theory</p>
+                <button onclick="closeTab(this)">X</button>
+            </div>
+
+            <div class="tab defaultClosed" onclick="switchTab(this)" id="CTM-PART-P">
+                <svg height="80%" viewBox="0 0 410 513" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
+                    <path d="M395.9 98.9L312 15C303 5.99999 290.8 0.899994 278.1 0.899994H48C21.5 0.999994 0 22.5 0 49V465C0 491.5 21.5 513 48 513H362C388.5 513 410 491.5 410 465V132.9C410 120.2 404.9 107.9 395.9 98.9ZM358.1 129H282V52.9L358.1 129ZM48 465V49H234V153C234 166.3 244.7 177 258 177H362V465H48Z" ></path>
+                    <path d="M186.672 267.796L165.95 323.424L186.167 350.227C197.286 365.061 207.057 377.198 207.9 377.198C209.584 377.198 248.839 325.11 249.176 322.581C249.344 320.221 209.247 212 208.068 212C207.563 212 197.96 237.117 186.672 267.796Z" ></path>
+                    <path d="M75.4795 227.508C75.8165 230.543 81.0391 263.245 86.9357 300.33L97.718 367.421L112.038 374.669C128.212 382.761 145.227 388.829 165.107 393.381C175.89 395.909 184.987 396.583 211.437 396.415C241.931 396.415 245.469 396.078 261.137 391.695C282.702 385.795 315.217 370.455 317.576 365.061C318.418 362.87 323.809 332.021 329.537 296.285C335.097 260.548 340.151 229.194 340.657 226.497C341.33 223.463 340.993 221.946 339.814 222.283C338.972 222.62 309.152 260.885 273.773 307.242C238.393 353.598 209.079 391.695 208.405 391.863C207.731 392.201 178.08 354.104 142.363 307.41C106.647 260.548 76.8273 222.283 75.9849 222.283C75.1426 222.114 74.9741 224.643 75.4795 227.508Z" ></path>
+                    <path d="M98.5604 389.503V398.606L111.701 404.675C143.037 419.172 170.33 424.903 208.068 424.903C246.143 424.903 271.077 419.509 307.13 403.326L317.576 398.606V389.672C317.576 384.615 317.239 380.569 316.733 380.569C316.228 380.569 311.174 382.929 305.614 385.795C292.473 392.369 265.18 401.472 246.817 405.349C224.915 409.9 187.177 409.395 164.265 404.338C146.07 400.46 124.337 392.706 109.006 384.952C104.288 382.592 99.9081 380.569 99.4027 380.569C98.8973 380.569 98.5604 384.615 98.5604 389.503Z" ></path>
+                </svg>
+                <p>CTM XVI MPL PART P</p>
+                <button onclick="closeTab(this)">X</button>
+            </div>
+
+            <div class="tab defaultClosed" onclick="switchTab(this)" id="PSG-4">
+                <svg height="80%" viewBox="0 0 410 513" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
+                    <path d="M395.9 98.9L312 15C303 5.99999 290.8 0.899994 278.1 0.899994H48C21.5 0.999994 0 22.5 0 49V465C0 491.5 21.5 513 48 513H362C388.5 513 410 491.5 410 465V132.9C410 120.2 404.9 107.9 395.9 98.9ZM358.1 129H282V52.9L358.1 129ZM48 465V49H234V153C234 166.3 244.7 177 258 177H362V465H48Z" ></path>
+                    <path d="M186.672 267.796L165.95 323.424L186.167 350.227C197.286 365.061 207.057 377.198 207.9 377.198C209.584 377.198 248.839 325.11 249.176 322.581C249.344 320.221 209.247 212 208.068 212C207.563 212 197.96 237.117 186.672 267.796Z" ></path>
+                    <path d="M75.4795 227.508C75.8165 230.543 81.0391 263.245 86.9357 300.33L97.718 367.421L112.038 374.669C128.212 382.761 145.227 388.829 165.107 393.381C175.89 395.909 184.987 396.583 211.437 396.415C241.931 396.415 245.469 396.078 261.137 391.695C282.702 385.795 315.217 370.455 317.576 365.061C318.418 362.87 323.809 332.021 329.537 296.285C335.097 260.548 340.151 229.194 340.657 226.497C341.33 223.463 340.993 221.946 339.814 222.283C338.972 222.62 309.152 260.885 273.773 307.242C238.393 353.598 209.079 391.695 208.405 391.863C207.731 392.201 178.08 354.104 142.363 307.41C106.647 260.548 76.8273 222.283 75.9849 222.283C75.1426 222.114 74.9741 224.643 75.4795 227.508Z" ></path>
+                    <path d="M98.5604 389.503V398.606L111.701 404.675C143.037 419.172 170.33 424.903 208.068 424.903C246.143 424.903 271.077 419.509 307.13 403.326L317.576 398.606V389.672C317.576 384.615 317.239 380.569 316.733 380.569C316.228 380.569 311.174 382.929 305.614 385.795C292.473 392.369 265.18 401.472 246.817 405.349C224.915 409.9 187.177 409.395 164.265 404.338C146.07 400.46 124.337 392.706 109.006 384.952C104.288 382.592 99.9081 380.569 99.4027 380.569C98.8973 380.569 98.5604 384.615 98.5604 389.503Z" ></path>
+                </svg>
+                <p>Pilot Study Guid 4</p>
+                <button onclick="closeTab(this)">X</button>
+            </div>
+
+            <div class="tab defaultClosed" onclick="switchTab(this)" id="MMEL">
+                <svg height="80%" viewBox="0 0 410 513" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
+                    <path d="M395.9 98.9L312 15C303 5.99999 290.8 0.899994 278.1 0.899994H48C21.5 0.999994 0 22.5 0 49V465C0 491.5 21.5 513 48 513H362C388.5 513 410 491.5 410 465V132.9C410 120.2 404.9 107.9 395.9 98.9ZM358.1 129H282V52.9L358.1 129ZM48 465V49H234V153C234 166.3 244.7 177 258 177H362V465H48Z" ></path>
+                    <path d="M186.672 267.796L165.95 323.424L186.167 350.227C197.286 365.061 207.057 377.198 207.9 377.198C209.584 377.198 248.839 325.11 249.176 322.581C249.344 320.221 209.247 212 208.068 212C207.563 212 197.96 237.117 186.672 267.796Z" ></path>
+                    <path d="M75.4795 227.508C75.8165 230.543 81.0391 263.245 86.9357 300.33L97.718 367.421L112.038 374.669C128.212 382.761 145.227 388.829 165.107 393.381C175.89 395.909 184.987 396.583 211.437 396.415C241.931 396.415 245.469 396.078 261.137 391.695C282.702 385.795 315.217 370.455 317.576 365.061C318.418 362.87 323.809 332.021 329.537 296.285C335.097 260.548 340.151 229.194 340.657 226.497C341.33 223.463 340.993 221.946 339.814 222.283C338.972 222.62 309.152 260.885 273.773 307.242C238.393 353.598 209.079 391.695 208.405 391.863C207.731 392.201 178.08 354.104 142.363 307.41C106.647 260.548 76.8273 222.283 75.9849 222.283C75.1426 222.114 74.9741 224.643 75.4795 227.508Z" ></path>
+                    <path d="M98.5604 389.503V398.606L111.701 404.675C143.037 419.172 170.33 424.903 208.068 424.903C246.143 424.903 271.077 419.509 307.13 403.326L317.576 398.606V389.672C317.576 384.615 317.239 380.569 316.733 380.569C316.228 380.569 311.174 382.929 305.614 385.795C292.473 392.369 265.18 401.472 246.817 405.349C224.915 409.9 187.177 409.395 164.265 404.338C146.07 400.46 124.337 392.706 109.006 384.952C104.288 382.592 99.9081 380.569 99.4027 380.569C98.8973 380.569 98.5604 384.615 98.5604 389.503Z" ></path>
+                </svg>
+                <p>Master MEL list</p>
+                <button onclick="closeTab(this)">X</button>
+            </div>
+
+        </div>
+        <!-- END OF TABS -->
+<!-- - - - - - - - - - - - TOP BAR  - - - - - - - - - - - -->
+        <div class="rightIcons">
+            <!-- This is the search icon -->
+            <svg id="search" fill="white" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 0 24 24" width="100%" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
+                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+            </svg>
+
+            <!-- This is the profile icon -->
+            <svg onclick="openPopup('profileMenu')" id="profile" fill="white" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"></path>
+            </svg>
+            <div id="profileMenu" style="display: none;">
+                <div class="header">
+                    <p>Joakim Kjellander</p>
+                    <p>joakim.kjellander.3036@student.lu.se</p>
+                </div>
+                <div class="options">
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v1c0 .55.45 1 1 1h14c.55 0 1-.45 1-1v-1c0-2.66-5.33-4-8-4z"></path></svg>
+                        <p>Edit Profile</p>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><g fill="none"><path d="M0 0h24v24H0V0z"></path><path opacity=".87" d="M0 0h24v24H0V0z"></path></g><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM9 8V6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9z"></path></svg>
+                        <p>Change password</p>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 0 24 24" width="100%" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path d="M0 0h24v24H0z" fill="none"></path><path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"></path></svg>
+                        <p>Logout</p>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="100%" viewBox="0 0 24 24" width="100%" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><g><path d="M0,0h24v24H0V0z" fill="none"></path><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"></path></g></svg>
+                        <p>Settings</p>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 0 24 24" width="100%" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path d="M0 0h24v24H0z" fill="none"></path><path d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6c3.31 0 6 2.69 6 6s-2.69 6-6 6z"></path></svg>
+                        <p>Theme: Light</p>
+                    </li>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- SIDEBAR -->
+    <div id="side-bar">
+        <div id="side-bar-top-menu">
+            <li>
+                <ul>
+                    <li onclick="switchTab(dashboard)">
+                        <svg fill="#707070" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
+                            <path d="M4 13h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zm0 8h6c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1zm10 0h6c.55 0 1-.45 1-1v-8c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zM13 4v4c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1z"></path></svg>                        
+                        <p>Dashboard</p>
+                    </li>
+                    <li id="dontClose" onclick="openPopup('unreadPopup')">
+                        <svg fill="#707070" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 0 24 24" width="100%" fit=""    preserveAspectRatio="xMidYMid meet" focusable="false">
+                            <path d="M20 6H10v6H8V4h6V0H6v6H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2z"></path></svg>
+                        <p>Unread</p>
+                    </li>
+                    <li id="dontClose" onclick="openPopup('documentPopup')">
+                        <svg fill="#707070" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit=""    preserveAspectRatio="xMidYMid meet" focusable="false">
+                            <path d="M10.59 4.59C10.21 4.21 9.7 4 9.17 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-1.41-1.41z"></path>
+                        </svg>
+                        <p>Documents</p>
+                    </li>
+                </ul>
+            </li>
+        </div>
+            <footer>
+                <div id="footerText">
+                    <p class="footerText">Recent</p>
+                    <p class="footerText">My Documents</p>
+                </div>
+                <img class="footerLogo" src="img/logo.png">
+            </footer>
+    </div>
+
+    <div class="container" id="container">
+        
+<!-- Dashboard with cards, hidden when in other tab -->
+        <div class="mainContent">
+            <div class="card">
+                <img src="img/lusaLogo.png" alt="">
+                <h2>Welcome to your document portal</h2><br>
+                <p>Here you can find all your up-to-date documentation.</p>
+            </div>
+            <div class="card unread">
+                <h3>Unread</h3>
+                <h3 id="numberOfUnreadDocs">2</h3>
+                <ul id="unread">
+                    <li onclick="openTab(this)" class="CTM-PART-P">
+                        <span>
+                            <svg width="100%" height="100%" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
+                            <path d="M369.9 97.9L286 14C277 4.99999 264.8 -0.100006 252.1 -0.100006H48C21.5 -6.10203e-06 0 21.5 0 48V464C0 490.5 21.5 512 48 512H336C362.5 512 384 490.5 384 464V131.9C384 119.2 378.9 106.9 369.9 97.9ZM332.1 128H256V51.9L332.1 128ZM48 464V48H208V152C208 165.3 218.7 176 232 176H336V464H48Z" fill="#23A8D5"></path>
+                            <path d="M173.611 260.259L155.316 309.369L173.165 333.031C182.981 346.128 191.608 356.843 192.351 356.843C193.839 356.843 228.494 310.857 228.791 308.625C228.94 306.542 193.541 211 192.5 211C192.054 211 183.576 233.174 173.611 260.259Z" fill="#ffc213"></path>
+                            <path d="M75.4462 224.691C75.7437 227.37 80.3544 256.241 85.5601 288.981L95.0791 348.211L107.722 354.61C122 361.754 137.022 367.111 154.573 371.129C164.092 373.361 172.123 373.957 195.475 373.808C222.396 373.808 225.519 373.51 239.351 369.641C258.389 364.432 287.095 350.89 289.177 346.128C289.921 344.193 294.68 316.959 299.737 285.409C304.646 253.86 309.108 226.18 309.554 223.798C310.149 221.12 309.851 219.78 308.81 220.078C308.066 220.376 281.74 254.158 250.506 295.083C219.272 336.008 193.392 369.641 192.797 369.79C192.203 370.087 166.025 336.454 134.494 295.232C102.962 253.86 76.6361 220.078 75.8924 220.078C75.1487 219.929 75 222.161 75.4462 224.691Z" fill="#ffc213"></path>
+                            <path d="M95.8228 367.706V375.743L107.424 381.1C135.089 393.898 159.184 398.958 192.5 398.958C226.114 398.958 248.127 394.196 279.956 379.909L289.177 375.743V367.855C289.177 363.391 288.88 359.819 288.434 359.819C287.987 359.819 283.525 361.902 278.617 364.432C267.016 370.236 242.921 378.272 226.709 381.695C207.373 385.713 174.057 385.267 153.829 380.802C137.766 377.38 118.579 370.534 105.044 363.688C100.88 361.605 97.0127 359.819 96.5665 359.819C96.1202 359.819 95.8228 363.391 95.8228 367.706Z" fill="#ffc213"></path>
+                            </svg>
+                            <p class="unreadTitle">CTM XVI MPL PART P</p>
+                        </span>
+                        <p class="unreadRev">Rev 69</p>
+                        <p class="unreadDate">2020-04-20</p>
+                    </li>
+
+                    <li onclick="openTab(this)" class="PSG-4">
+                        <span>
+                            <svg width="100%" height="100%" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
+                            <path d="M369.9 97.9L286 14C277 4.99999 264.8 -0.100006 252.1 -0.100006H48C21.5 -6.10203e-06 0 21.5 0 48V464C0 490.5 21.5 512 48 512H336C362.5 512 384 490.5 384 464V131.9C384 119.2 378.9 106.9 369.9 97.9ZM332.1 128H256V51.9L332.1 128ZM48 464V48H208V152C208 165.3 218.7 176 232 176H336V464H48Z" fill="#23A8D5"></path>
+                            <path d="M173.611 260.259L155.316 309.369L173.165 333.031C182.981 346.128 191.608 356.843 192.351 356.843C193.839 356.843 228.494 310.857 228.791 308.625C228.94 306.542 193.541 211 192.5 211C192.054 211 183.576 233.174 173.611 260.259Z" fill="#ffc213"></path>
+                            <path d="M75.4462 224.691C75.7437 227.37 80.3544 256.241 85.5601 288.981L95.0791 348.211L107.722 354.61C122 361.754 137.022 367.111 154.573 371.129C164.092 373.361 172.123 373.957 195.475 373.808C222.396 373.808 225.519 373.51 239.351 369.641C258.389 364.432 287.095 350.89 289.177 346.128C289.921 344.193 294.68 316.959 299.737 285.409C304.646 253.86 309.108 226.18 309.554 223.798C310.149 221.12 309.851 219.78 308.81 220.078C308.066 220.376 281.74 254.158 250.506 295.083C219.272 336.008 193.392 369.641 192.797 369.79C192.203 370.087 166.025 336.454 134.494 295.232C102.962 253.86 76.6361 220.078 75.8924 220.078C75.1487 219.929 75 222.161 75.4462 224.691Z" fill="#ffc213"></path>
+                            <path d="M95.8228 367.706V375.743L107.424 381.1C135.089 393.898 159.184 398.958 192.5 398.958C226.114 398.958 248.127 394.196 279.956 379.909L289.177 375.743V367.855C289.177 363.391 288.88 359.819 288.434 359.819C287.987 359.819 283.525 361.902 278.617 364.432C267.016 370.236 242.921 378.272 226.709 381.695C207.373 385.713 174.057 385.267 153.829 380.802C137.766 377.38 118.579 370.534 105.044 363.688C100.88 361.605 97.0127 359.819 96.5665 359.819C96.1202 359.819 95.8228 363.391 95.8228 367.706Z" fill="#ffc213"></path>
+                            </svg>
+                            <p class="unreadTitle">Pilot study guide 4 (comming soon)</p>
+                        </span>
+                        <p class="unreadRev">Rev 0</p>
+                        <p class="unreadDate">2021-06-22</p>
+                    </li>
+
+                </ul>
+                <button>Show all</button>
+            </div>
+        </div>
+
+        <!-- Here all diffrent tab containers -->
+
+        <!-- Night raiting theory tab container -->
+        <div class="tabContainer">
+            <div class="docViewer">
+
+                <div class="docShow">
+                    <iframe id="docRenderWindow" src="docs/CTM-PART-P.html" frameborder="0"></iframe>                    
+                </div>
+
+                <div class="docControls">
+                    <div class="controlGroup">
+                        <li><span>Pages</span><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M15 1H4c-1.1 0-2 .9-2 2v13c0 .55.45 1 1 1s1-.45 1-1V4c0-.55.45-1 1-1h10c.55 0 1-.45 1-1s-.45-1-1-1zm.59 4.59l4.83 4.83c.37.37.58.88.58 1.41V21c0 1.1-.9 2-2 2H7.99C6.89 23 6 22.1 6 21l.01-14c0-1.1.89-2 1.99-2h6.17c.53 0 1.04.21 1.42.59zM15 12h4.5L14 6.5V11c0 .55.45 1 1 1z"></path></svg></li>
+                        <li><span>Table of Contents</span><svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 0 24 24" width="100%" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path d="M0 0h24v24H0V0zm0 0h24v24H0V0z" fill="none"></path><path d="M4 9h12c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1zm0 4h12c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1zm0 4h12c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1zm15 0h2v-2h-2v2zm0-10v2h2V7h-2zm0 6h2v-2h-2v2z"></path></svg></li>
+                    </div>
+                    <div class="controlGroup">
+                        <li><span>First page</span><svg onclick="firstPage()" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 0 24 24" width="100%" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path d="M24 0v24H0V0h24z" fill="none" opacity=".87"></path><path d="M17.7 15.89L13.82 12l3.89-3.89c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0l-4.59 4.59c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0 .38-.38.38-1.02-.01-1.4zM7 6c.55 0 1 .45 1 1v10c0 .55-.45 1-1 1s-1-.45-1-1V7c0-.55.45-1 1-1z"></path></svg></li>
+                        <li><span>Previous chapter</span><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M11 9l1.42 1.42L8.83 14H18V4h2v12H8.83l3.59 3.58L11 21l-6-6 6-6z"></path></svg></li>
+                        <li><span>Previous change</span><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path d="M13 12.4637C13.2962 12.4637 13.5363 12.7038 13.5363 13C13.5363 13.2962 13.2962 13.5363 13 13.5363V12.4637ZM0.620785 13.3792C0.41135 13.1698 0.41135 12.8302 0.620785 12.6208L4.03372 9.20785C4.24316 8.99841 4.58272 8.99841 4.79215 9.20785C5.00159 9.41728 5.00159 9.75684 4.79215 9.96628L1.75843 13L4.79215 16.0337C5.00159 16.2432 5.00159 16.5827 4.79215 16.7922C4.58272 17.0016 4.24316 17.0016 4.03372 16.7922L0.620785 13.3792ZM13 13.5363L1 13.5363V12.4637L13 12.4637V13.5363Z" fill="currentColor" stroke="currentColor" stroke-width="1px"></path><path d="M12.0408 8.16457C12.3991 7.37719 13.5203 7.38527 13.8672 8.17774L17.7306 17.0053C18.0198 17.666 17.5357 18.4062 16.8145 18.4062H8.93484C8.20741 18.4062 7.72337 17.6543 8.02462 16.9921L12.0408 8.16457ZM14.4042 3.91488C14.0435 3.15089 12.9565 3.15089 12.5958 3.91488L5.67387 18.573C5.36062 19.2363 5.84452 20 6.57811 20H20.4219C21.1555 20 21.6394 19.2363 21.3261 18.573L14.4042 3.91488Z" fill="currentColor"></path></svg></li>
+                        <li><span>Previous page</span><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M14.71 6.71c-.39-.39-1.02-.39-1.41 0L8.71 11.3c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L10.83 12l3.88-3.88c.39-.39.38-1.03 0-1.41z"></path></svg></li>
+                        <li><span>Next page</span><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M9.29 6.71c-.39.39-.39 1.02 0 1.41L13.17 12l-3.88 3.88c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41L10.7 6.7c-.38-.38-1.02-.38-1.41.01z"></path></svg></li>                        
+                        <li><span>Next change</span><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path d="M9.04082 8.16457C9.39905 7.37719 10.5203 7.38527 10.8672 8.17774L14.7306 17.0053C15.0198 17.666 14.5357 18.4062 13.8145 18.4062H5.93484C5.20741 18.4062 4.72337 17.6543 5.02462 16.9921L9.04082 8.16457ZM11.4042 3.91488C11.0435 3.15089 9.95653 3.15089 9.59575 3.91488L2.67387 18.573C2.36062 19.2363 2.84452 20 3.57811 20H17.4219C18.1555 20 18.6394 19.2363 18.3261 18.573L11.4042 3.91488Z" fill="currentColor"></path><path d="M10 12.4637C9.70381 12.4637 9.46371 12.7038 9.46371 13C9.46371 13.2962 9.70381 13.5363 10 13.5363V12.4637ZM23.3792 13.3792C23.5887 13.1698 23.5887 12.8302 23.3792 12.6208L19.9663 9.20785C19.7568 8.99841 19.4173 8.99841 19.2078 9.20785C18.9984 9.41728 18.9984 9.75684 19.2078 9.96628L22.2416 13L19.2078 16.0337C18.9984 16.2432 18.9984 16.5827 19.2078 16.7922C19.4173 17.0016 19.7568 17.0016 19.9663 16.7922L23.3792 13.3792ZM10 13.5363L23 13.5363V12.4637L10 12.4637V13.5363Z" fill="currentColor" stroke="currentColor" stroke-width="1px"></path></svg></li>
+                        <li><span>Next chapter</span><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M19 15l-6 6-1.42-1.42L15.17 16H4V4h2v10h9.17l-3.59-3.58L13 9l6 6z"></path></svg></li>
+                        <li><span>Last page</span><svg onclick="lastPage()" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 0 24 24" width="100%" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path d="M0 0h24v24H0V0z" fill="none" opacity=".87"></path><path d="M6.29 8.11L10.18 12l-3.89 3.89c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41L7.7 6.7c-.39-.39-1.02-.39-1.41 0-.38.39-.38 1.03 0 1.41zM17 6c.55 0 1 .45 1 1v10c0 .55-.45 1-1 1s-1-.45-1-1V7c0-.55.45-1 1-1z"></path></svg></li>
+                    </div>
+                    <div class="controlGroup">
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.78 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.26 4.25c.41.41 1.07.41 1.48 0l.01-.01c.41-.41.41-1.07 0-1.48L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm0-7c-.28 0-.5.22-.5.5V9H7.5c-.28 0-.5.22-.5.5s.22.5.5.5H9v1.5c0 .28.22.5.5.5s.5-.22.5-.5V10h1.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5H10V7.5c0-.28-.22-.5-.5-.5z"></path></svg></li>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - Popups - - - - - - - - - - - - - - - - - - - - - -->
+
+    <!-- DOCUMENTS -->
+        <div id="documentsPop">
+            <div class="popupCard" id="documentPopup">
+                
+                <div class="popTitle">
+                    <div id="left">
+                        <h2>Documents</h2>
+                    </div>
+                    <div id="right">
+                        <input type="text" placeholder="Filter">
+                        <span>
+                            <svg id="popupMenuButton" fill="#1C1C1C" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path d="M10.59 4.59C10.21 4.21 9.7 4 9.17 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-1.41-1.41z"></path></svg>
+                            <svg id="popupMenuButton" fill="#1C1C1C" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 0 24 24" width="100%" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path d="M12,2C6.5,2,2,6.5,2,12s4.5,10,10,10s10-4.5,10-10S17.5,2,12,2z M16.2,16.2L11,13V7h1.5v5.2l4.5,2.7L16.2,16.2z"></path></svg>
+                            <svg id="popupMenuButton" fill="#1C1C1C" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 0 24 24" width="100%" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path d="M12,17.27l4.15,2.51c0.76,0.46,1.69-0.22,1.49-1.08l-1.1-4.72l3.67-3.18c0.67-0.58,0.31-1.68-0.57-1.75l-4.83-0.41 l-1.89-4.46c-0.34-0.81-1.5-0.81-1.84,0L9.19,8.63L4.36,9.04c-0.88,0.07-1.24,1.17-0.57,1.75l3.67,3.18l-1.1,4.72 c-0.2,0.86,0.73,1.54,1.49,1.08L12,17.27z"></path></svg>
+                        </span>
+                        <button onclick="closePopup('documentPopup')">X</button>
+                    </div>
+                </div>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - Popup sidebar - - - - - - - - - - - - - - - - - - - - - -->
+                <div class="popSidebar">
+                    <div class="folder">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path d="M8.12 9.29L12 13.17l3.88-3.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-4.59 4.59c-.39.39-1.02.39-1.41 0L6.7 10.7c-.39-.39-.39-1.02 0-1.41.39-.38 1.03-.39 1.42 0z"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="#757575" preserveAspectRatio="xMidYMid meet" focusable="false"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M20 6h-8l-1.41-1.41C10.21 4.21 9.7 4 9.17 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-1 12H5c-.55 0-1-.45-1-1V9c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v8c0 .55-.45 1-1 1z"></path></svg>
+                        <p onclick="displayFolder(this)">1 TFHS-MPL</p>
+                    </div>
+
+                    <div class="folder second">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path d="M8.12 9.29L12 13.17l3.88-3.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-4.59 4.59c-.39.39-1.02.39-1.41 0L6.7 10.7c-.39-.39-.39-1.02 0-1.41.39-.38 1.03-.39 1.42 0z"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="#757575" preserveAspectRatio="xMidYMid meet" focusable="false"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M20 6h-8l-1.41-1.41C10.21 4.21 9.7 4 9.17 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-1 12H5c-.55 0-1-.45-1-1V9c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v8c0 .55-.45 1-1 1z"></path></svg>
+                        <p onclick="displayFolder(this)">1 Operation Manual</p>
+                    </div>
+                    <div class="folder fourth">                        
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="#757575" preserveAspectRatio="xMidYMid meet" focusable="false"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M10.59 4.59C10.21 4.21 9.7 4 9.17 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-1.41-1.41z"></path></svg>
+                        <p onclick="displayFolder(this)">Annex</p>
+                    </div>
+                    <div class="folder fourth">                        
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="#757575" preserveAspectRatio="xMidYMid meet" focusable="false"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M10.59 4.59C10.21 4.21 9.7 4 9.17 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-1.41-1.41z"></path></svg>
+                        <p onclick="displayFolder(this)">POH</p>
+                    </div>
+
+
+
+                    <div class="folder third">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="#757575" preserveAspectRatio="xMidYMid meet" focusable="false"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M10.59 4.59C10.21 4.21 9.7 4 9.17 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-1.41-1.41z"></path></svg>
+                        <p onclick="displayFolder(this)">2 Training Manual</p>
+                    </div>
+                    <div class="folder third">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="#757575" preserveAspectRatio="xMidYMid meet" focusable="false"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M10.59 4.59C10.21 4.21 9.7 4 9.17 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-1.41-1.41z"></path></svg>
+                        <p onclick="displayFolder(this)">3 Pilot study material</p>
+                    </div>
+                    <div class="folder third">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="#757575" preserveAspectRatio="xMidYMid meet" focusable="false"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M10.59 4.59C10.21 4.21 9.7 4 9.17 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-1.41-1.41z"></path></svg>
+                        <p onclick="displayFolder(this)">4 Student & Personal photos</p>
+                    </div>
+
+                </div>
+
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - Main content in popup- - - - - - - - - - - - - - - - - - - - - -->
+                <div class="popContent">
+                    <div class="contentContainer">
+                        <div class="titleBar">
+                            <h4 id="popupTitle">1 TFHS-MPL</h4>
+                        </div>
+
+                        <div class="menuTitles">
+                            <li>Name</li>
+                            <li>Revision</li>
+                            <li>Date</li>
+                        </div>
+
+                        <div class="documentList">
+
+                            <div class="CTM-PART-P" id="listedDoc" onclick="openTab(this)">
+                                <span style="display: flex;">
+                                    <svg width="100%" height="100%" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
+                                        <path d="M369.9 97.9L286 14C277 4.99999 264.8 -0.100006 252.1 -0.100006H48C21.5 -6.10203e-06 0 21.5 0 48V464C0 490.5 21.5 512 48 512H336C362.5 512 384 490.5 384 464V131.9C384 119.2 378.9 106.9 369.9 97.9ZM332.1 128H256V51.9L332.1 128ZM48 464V48H208V152C208 165.3 218.7 176 232 176H336V464H48Z" fill="#23A8D5"></path>
+                                        <path d="M173.611 260.259L155.316 309.369L173.165 333.031C182.981 346.128 191.608 356.843 192.351 356.843C193.839 356.843 228.494 310.857 228.791 308.625C228.94 306.542 193.541 211 192.5 211C192.054 211 183.576 233.174 173.611 260.259Z" fill="#ffc213"></path>
+                                        <path d="M75.4462 224.691C75.7437 227.37 80.3544 256.241 85.5601 288.981L95.0791 348.211L107.722 354.61C122 361.754 137.022 367.111 154.573 371.129C164.092 373.361 172.123 373.957 195.475 373.808C222.396 373.808 225.519 373.51 239.351 369.641C258.389 364.432 287.095 350.89 289.177 346.128C289.921 344.193 294.68 316.959 299.737 285.409C304.646 253.86 309.108 226.18 309.554 223.798C310.149 221.12 309.851 219.78 308.81 220.078C308.066 220.376 281.74 254.158 250.506 295.083C219.272 336.008 193.392 369.641 192.797 369.79C192.203 370.087 166.025 336.454 134.494 295.232C102.962 253.86 76.6361 220.078 75.8924 220.078C75.1487 219.929 75 222.161 75.4462 224.691Z" fill="#ffc213"></path>
+                                        <path d="M95.8228 367.706V375.743L107.424 381.1C135.089 393.898 159.184 398.958 192.5 398.958C226.114 398.958 248.127 394.196 279.956 379.909L289.177 375.743V367.855C289.177 363.391 288.88 359.819 288.434 359.819C287.987 359.819 283.525 361.902 278.617 364.432C267.016 370.236 242.921 378.272 226.709 381.695C207.373 385.713 174.057 385.267 153.829 380.802C137.766 377.38 118.579 370.534 105.044 363.688C100.88 361.605 97.0127 359.819 96.5665 359.819C96.1202 359.819 95.8228 363.391 95.8228 367.706Z" fill="#ffc213"></path>
+                                    </svg>
+                                    <p>CTM XVI MPL PART P</p>
+                                </span>
+                                
+                                <p>Rev 69</p>
+                                <p id="date">2020-04-20</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+    <!-- UNREAD -->
+        <div id="unreadPop">
+            <div class="popupCard popupCardSmall" id="unreadPopup">
+                
+                <div class="popTitle paddingTop">
+                    <div id="left">
+                        <h2>Unread Documents</h2>
+                    </div>
+                    <div id="right">
+                        <input type="text" placeholder="Filter">
+                        <button onclick="closePopup('unreadPopup')">X</button>
+                    </div>
+                </div>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - Main content in popup - - - - - - - - - - - - - - - - - - - - - -->
+                <div class="popContent">
+                    <div class="contentContainer">
+
+                        <div class="menuTitles">
+                            <li>Name</li>
+                            <li>Revision</li>
+                            <li>Date</li>
+                        </div>
+
+                        <div class="documentList">
+
+                            <div class="CTM-PART-P listedDoc" onclick="openTab(this)">
+                                <span style="display: flex;">
+                                    <svg width="100%" height="100%" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
+                                        <path d="M369.9 97.9L286 14C277 4.99999 264.8 -0.100006 252.1 -0.100006H48C21.5 -6.10203e-06 0 21.5 0 48V464C0 490.5 21.5 512 48 512H336C362.5 512 384 490.5 384 464V131.9C384 119.2 378.9 106.9 369.9 97.9ZM332.1 128H256V51.9L332.1 128ZM48 464V48H208V152C208 165.3 218.7 176 232 176H336V464H48Z" fill="#23A8D5"></path>
+                                        <path d="M173.611 260.259L155.316 309.369L173.165 333.031C182.981 346.128 191.608 356.843 192.351 356.843C193.839 356.843 228.494 310.857 228.791 308.625C228.94 306.542 193.541 211 192.5 211C192.054 211 183.576 233.174 173.611 260.259Z" fill="#ffc213"></path>
+                                        <path d="M75.4462 224.691C75.7437 227.37 80.3544 256.241 85.5601 288.981L95.0791 348.211L107.722 354.61C122 361.754 137.022 367.111 154.573 371.129C164.092 373.361 172.123 373.957 195.475 373.808C222.396 373.808 225.519 373.51 239.351 369.641C258.389 364.432 287.095 350.89 289.177 346.128C289.921 344.193 294.68 316.959 299.737 285.409C304.646 253.86 309.108 226.18 309.554 223.798C310.149 221.12 309.851 219.78 308.81 220.078C308.066 220.376 281.74 254.158 250.506 295.083C219.272 336.008 193.392 369.641 192.797 369.79C192.203 370.087 166.025 336.454 134.494 295.232C102.962 253.86 76.6361 220.078 75.8924 220.078C75.1487 219.929 75 222.161 75.4462 224.691Z" fill="#ffc213"></path>
+                                        <path d="M95.8228 367.706V375.743L107.424 381.1C135.089 393.898 159.184 398.958 192.5 398.958C226.114 398.958 248.127 394.196 279.956 379.909L289.177 375.743V367.855C289.177 363.391 288.88 359.819 288.434 359.819C287.987 359.819 283.525 361.902 278.617 364.432C267.016 370.236 242.921 378.272 226.709 381.695C207.373 385.713 174.057 385.267 153.829 380.802C137.766 377.38 118.579 370.534 105.044 363.688C100.88 361.605 97.0127 359.819 96.5665 359.819C96.1202 359.819 95.8228 363.391 95.8228 367.706Z" fill="#ffc213"></path>
+                                    </svg>
+                                    <p>CTM XVI MPL PART P</p>
+                                </span>
+                                
+                                <p>REV 23</p>
+                                <p id="date">DATE 263/2</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div> 
+</body>
+<script src="scriptLate.js"></script>
+</html>
